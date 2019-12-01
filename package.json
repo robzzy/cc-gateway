@@ -1,0 +1,32 @@
+{
+  "name": "cc-gateway",
+  "version": "1.0.0",
+  "description": "Use to build gateway to call rpc services",
+  "main": "index.js",
+  "repository": "git@github.com:D4vidz/cc-gateway.git",
+  "author": "zzy <15779712170@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^12.12.6",
+    "accept-language": "^3.0.18",
+    "apollo-server-express": "^2.9.7",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-depth-limit": "^1.1.0",
+    "http": "^0.0.0",
+    "humps": "^2.0.1",
+    "kinopio": "^1.0.4",
+    "lodash": "^4.17.15",
+    "ncp": "^2.0.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2",
+    "uuid": "^3.3.3"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc"
+  }
+}
+
