@@ -1,0 +1,8 @@
+{
+  schema: {
+    files: [
+      "src/schemas/**/*.gql",
+      "src/executableSchemas/base.gql",
+    ]
+  }
+}
