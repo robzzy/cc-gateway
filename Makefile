@@ -31,7 +31,7 @@ docker-login:
 
 docker-save:
 	mkdir -p docker-images
-	docker save -o docker_images/cc-gateway.tar $(SERVICE_NAME):$(TAG)
+	docker save -o docker-images/cc-gateway.tar $(SERVICE_NAME):$(TAG)
 
 docker-load:
 	docker load -i docker-images/cc-gateway.tar
