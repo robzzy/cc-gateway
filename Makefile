@@ -36,8 +36,10 @@ docker-save:
 docker-load:
 	docker load -i docker-images/cc-gateway.tar
 
-push-image:
+docker-tag:
 	docker tag cc-gateway:$(TAG) $(PROJECT_DOCKER_HOST)/$(SERVICE_NAME):$(TAG)
+
+push-image:
 	docker push $(PROJECT_DOCKER_HOST)/$(SERVICE_NAME):$(TAG)
 
 
