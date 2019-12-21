@@ -26,6 +26,9 @@ build:
 	yarn run build
 	docker build -t $(SERVICE_NAME):$(TAG) .
 
+docker-pull:
+	docker pull $(PROJECT_DOCKER_HOST)/$(SERVICE_NAME):$(TAG)
+
 docker-login:
 	echo $$DOCKER_PASSWORD | docker login --username=$(DOCKER_USERNAME) --password-stdin
 
@@ -39,7 +42,7 @@ docker-load:
 docker-tag:
 	docker tag cc-gateway:$(TAG) $(PROJECT_DOCKER_HOST)/$(SERVICE_NAME):$(TAG)
 
-push-image:
+push-images:
 	docker push $(PROJECT_DOCKER_HOST)/$(SERVICE_NAME):$(TAG)
 
 
