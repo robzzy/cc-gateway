@@ -1,0 +1,20 @@
+version: 2.1
+orbs:
+  service-orb: woshizzy/service-base@volatile
+
+workflows:
+  all_workflows:
+    jobs:
+      - docker_approval:
+          type: approval
+      - service-orb/node_build:
+          name: build_images
+          context: org-global
+          SERVICE_NAME: cc-gateway
+          requires:
+            - docker_approval
+      - service-orb/push:
+          name: push_images
+          context: org-global
+          requires:
+            - build_images
