@@ -30,7 +30,7 @@ docker-login:
 	echo $$DOCKER_PASSWORD | docker login --username=$(DOCKER_USERNAME) --password-stdin
 
 docker-save:
-	mkdir -p docker_images
+	mkdir -p docker-images
 	docker save -o docker_images/cc-gateway.tar $(SERVICE_NAME):$(TAG)
 
 docker-load:
