@@ -13,14 +13,14 @@ PROJECT_DOCKER_HOST ?= zengzhiyuan
 CHART_FOLDER_NAME ?= cc-gateway
 
 
-build:
+dist:
 	yarn run build
 
-develop: build
+develop: dist
 	yarn run start
 
 # docker
-build-image:
+build:
 	docker build -t $(SERVICE_NAME):$(TAG) .
 
 docker-login:
