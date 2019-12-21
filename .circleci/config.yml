@@ -7,7 +7,7 @@ workflows:
     jobs:
       - docker_approval:
           type: approval
-      - service-orb/build:
+      - service-orb/node_build:
           name: build_images
           context: org-global
           SERVICE_NAME: cc-gateway
