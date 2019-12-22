@@ -1,33 +1,24 @@
 import * as express from 'express';
-// import { ApolloServer } from 'apollo-server-express';
-import { createServer } from 'http';
-import * as cors from 'cors';
-// import compression from 'compression';
-// import depthLimit from 'graphql-depth-limit';
-// import { resolvers, typeDefs } from './executeable-schemas'
+import { ApolloServer, Config } from 'apollo-server-express';
+import { schema } from './executable-schemas';
 
+
+const port = process.env.PORT || 8080;
+
+const serverConfig: Config = {
+    schema,
+    context: ({ req, res }) => ({
+        req,
+        res,
+    }),
+};
+
+const server = new ApolloServer(serverConfig);
 
 const app = express();
 
-// const server = new ApolloServer({
-//     resolvers,
-//     typeDefs,
-//     validationRules: [depthLimit(7)],
-//     context: ({ req, res }) => ({
-//         req,
-//         res,
-//     })
-// });
+server.applyMiddleware({app, path: '/graphql'});
 
-app.use('*', cors());
-app.get('/', (_, res) => res.send('Hello, World!'));
-// app.use(compression());
-
-// server.applyMiddleware({ app, path: 'graphql' });
-
-const httServer = createServer(app);
-
-httServer.listen(
-    { port: 8080 },
-    () => console.log(`Running in http://localhost:8080`)
-);
+app.listen(port, () => {
+    console.log(`Server ready at http://localhost:8080`);
+});
