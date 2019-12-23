@@ -58,6 +58,7 @@ acceptLanguage.languages([
 export function namekoRpcContextMiddleware(req, _, next) {
     const workerCtx = {
         'nameko.call_id_stack': ['cc-gateway'],
+        'content_type': 'application/json',
     };
 
     if (req.auth) {
