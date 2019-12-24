@@ -1,4 +1,6 @@
 import * as express from 'express';
+
+import { kinopio, namekoRpcContextMiddleware } from './middleware/rpc';
 import { ApolloServer, Config } from 'apollo-server-express';
 import { schema } from './executable-schemas';
 
@@ -10,6 +12,8 @@ const serverConfig: Config = {
     context: ({ req, res }) => ({
         req,
         res,
+        rpc: req.rpc,
+        locale: req.locale,
     }),
 };
 
@@ -17,8 +21,17 @@ const server = new ApolloServer(serverConfig);
 
 const app = express();
 
-server.applyMiddleware({app, path: '/graphql'});
+async function createApp() {
+    await kinopio.connect();
+    app.use(namekoRpcContextMiddleware);
+    server.applyMiddleware({app, path: '/graphql'});
 
-app.listen(port, () => {
-    console.log(`Server ready at http://localhost:8080`);
-});
+    return app
+}
+
+createApp()
+    .then(app => {
+        app.listen(port, () => {
+            console.log(`Server ready at http://localhost:8080/graphql`);
+        });
+    })
