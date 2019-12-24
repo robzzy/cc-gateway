@@ -1123,10 +1123,10 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-kinopio@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/kinopio/-/kinopio-1.0.6.tgz#ca01701a60ecdd20d2f53c68e487cf1d11c9f4f2"
-  integrity sha512-OHvslB2c29HDInBK04fn53IAkX+VdzuuXFW3O22LlHUUnhhmje1k9c7nnP0tfuddksxghca1Cjdg2B1JNg8vJw==
+kinopio@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/kinopio/-/kinopio-1.0.7.tgz#b2497a070f27718c9bf99026a7732be6126c8086"
+  integrity sha512-a/bWaeV188IuZAlr36Nf1SUwRtpWuyKkaYPd+ifFoDtg2ccuyBCNbpvVcf8b2oKyQ6dkwCf5CtiWo9/y8TPamA==
   dependencies:
     amqplib "^0.5.5"
     uuid "^3.3.3"
