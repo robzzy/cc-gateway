@@ -4,10 +4,9 @@ import { camelizeKeys } from 'humps';
 import acceptLanguage from 'accept-language';
 import { isString, toLower } from 'lodash';
 
-
 export const kinopio = new Kinopio({
     hostname: process.env.RABBIT_SERVER,
-    port: parseInt(process.env.RABBIT_PORT, 5672),
+    port: parseInt(process.env.RABBIT_PORT),
     vhost: process.env.RABBIT_VHOST,
     username: process.env.RABBIT_USER,
     password: process.env.RABBIT_PASS,
