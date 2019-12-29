@@ -14,6 +14,7 @@ CHART_FOLDER_NAME ?= cc-gateway
 
 
 install-dependencies:
+	cp .env.dist .env
 	yarn install --non-interactive
 
 develop: install-dependencies

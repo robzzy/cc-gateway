@@ -8,7 +8,7 @@ If you want to use rpc, maybe need to run other nameko-services before.
 ```
 cd /path/to/cc-gateway
 
-make run
+make develop 
 
 http://localhost:8080/graphql
 ```
