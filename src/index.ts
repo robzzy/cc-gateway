@@ -3,6 +3,8 @@ import * as express from 'express';
 import { kinopio, namekoRpcContextMiddleware } from './middleware/rpc';
 import { ApolloServer, Config } from 'apollo-server-express';
 import { schema } from './executable-schemas';
+import { express as voyagerMiddleware } from 'graphql-voyager/middleware';
+import * as graphqlHttp from 'express-graphql';
 
 
 const port = process.env.PORT || 8080;
@@ -25,6 +27,8 @@ const app = express();
 async function createApp() {
     await kinopio.connect();
     app.use(namekoRpcContextMiddleware);
+    app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
+    app.use('/graphiql', graphqlHttp({ schema: schema, graphiql: true }));
     server.applyMiddleware({app, path: '/graphql'});
 
     return app
