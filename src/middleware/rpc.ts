@@ -3,6 +3,9 @@ import * as Raven from 'raven';
 import { camelizeKeys } from 'humps';
 import acceptLanguage from 'accept-language';
 import { isString, toLower } from 'lodash';
+import { getLogger } from '../logger';
+
+const logger = getLogger('rpc');
 
 export const kinopio = new Kinopio({
     hostname: process.env.RABBIT_SERVER,
@@ -72,7 +75,7 @@ export function namekoRpcContextMiddleware(req, _, next) {
         req.locale = language
     }
     req.rpc = kinopio.buildRpcProxy(workerCtx);
-    // console.log('rpc context:\n%j', workerCtx);
+    logger.info('rpc context:\n%j', workerCtx);
 
     next();
 }
