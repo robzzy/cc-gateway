@@ -4,3 +4,7 @@ image:
 service:
   externalPort: 80
   internalPort: 8080
+domain: iamdavidzeng.com
+endpoints:
+  - voyager
+  - graphiql
