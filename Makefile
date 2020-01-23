@@ -7,7 +7,7 @@ TAG ?= $(shell git rev-parse HEAD)
 endif
 
 CONTEXT ?= david.k8s.local
-NAMESPACE ?= demo
+NAMESPACE ?= default
 SERVICE_NAME ?= cc-gateway
 PROJECT_DOCKER_HOST ?= zengzhiyuan
 CHART_FOLDER_NAME ?= cc-gateway
@@ -56,9 +56,7 @@ test-chart:
 install-chart:
 	helm upgrade $(RELEASE_NAME) deploy/k8s/charts/$(CHART_FOLDER_NAME) --install \
 	--namespace=$(NAMESPACE) --kube-context=$(CONTEXT) \
-	--set image.tag=$(TAG) \
-	--set run_migrations=$(RUN_MIGRATIONS) \
-	--set db_revision=$(DB_REVISION);
+	--set image.tag=$(TAG);
 
 lint-chart:
 	helm lint deploy/k8s/charts/$(CHART_FOLDER_NAME) --strict
