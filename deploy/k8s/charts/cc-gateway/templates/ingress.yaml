@@ -1,0 +1,35 @@
+# Can't access to ingress for now, annotate it temporarily.
+
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: cc-gateway-graphql
+# spec:
+#   rules:
+#     - host: "gateway.{{ .Values.domain }}"
+#       http:
+#         paths:
+#           - backend:
+#               serviceName: {{ .Chart.Name }}
+#               servicePort: {{ .Values.service.externalPort }}
+#             path: /graphql
+# {{- $chartName := .Chart.Name -}}
+# {{- $domain := .Values.domain -}}
+# {{- $externalPort := .Values.service.externalPort -}}
+# {{- range $endpoint := .Values.endpoints }}
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: cc-gateway-{{ $endpoint }}
+# spec:
+#   rules:
+#     - host: "gateway.{{ $domain }}"
+#       http:
+#         paths:
+#           - backend:
+#               serviceName: {{ $chartName }}
+#               servicePort: {{ $externalPort }}
+#             path: /{{ $endpoint }}
+# ---
+# {{- end }}

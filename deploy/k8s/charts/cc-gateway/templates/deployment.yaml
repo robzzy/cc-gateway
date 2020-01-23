@@ -42,3 +42,4 @@ spec:
     - protocol: TCP
       port: {{ .Values.service.externalPort }}
       targetPort: {{ .Values.service.internalPort }}
+  type: LoadBalancer
