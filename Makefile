@@ -6,7 +6,7 @@ else
 TAG ?= $(shell git rev-parse HEAD)
 endif
 
-CONTEXT ?= david.k8s.local
+CONTEXT ?= minikube
 NAMESPACE ?= default
 SERVICE_NAME ?= cc-gateway
 PROJECT_DOCKER_HOST ?= zengzhiyuan
