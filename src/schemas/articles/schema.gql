@@ -3,9 +3,8 @@ extend type Query{
 }
 
 extend type Mutation{
-    createArticle(title: String!, content: String!): Article
+    createArticle(title: String!, content: String!, authorID: ID!): Article
 }
-
 
 type Article {
     id: ID
