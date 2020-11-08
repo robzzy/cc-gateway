@@ -4,17 +4,11 @@ export const resolvers = {
             const filters = [];
 
             if (email) {
-                const filter = {
-                    field: "email",
-                    value: email,
-                };
+                const filter = { field: "email", value: email };
                 filters.push(filter);
             }
             if (phone) {
-                const filter = {
-                    filed: "phone",
-                    value: phone
-                };
+                const filter = { filed: "phone", value: phone };
                 filters.push(filter);
             }
             const userInfo = await rpc.users.list_users({

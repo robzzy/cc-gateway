@@ -1,0 +1,16 @@
+extend type Query{
+    listArticles: [Article]
+}
+
+extend type Mutation{
+    createArticle(title: String!, content: String!): Article
+}
+
+
+type Article {
+    id: ID
+    title: String
+    content: String
+    status: String
+    clickNum: Int
+}
