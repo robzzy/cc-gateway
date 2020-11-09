@@ -18,9 +18,9 @@ install-dependencies:
 	cp .env.dist .env
 	yarn install --non-interactive
 
-develop: install-dependencies
+develop:
 	yarn run build
-	yarn run start
+	yarn run develop
 
 # docker
 build: 
