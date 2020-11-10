@@ -24,22 +24,7 @@ spec:
             - containerPort: {{ .Values.service.internalPort }}
           envFrom:
             - configMapRef:
-                name: common-rabbit
-            - configMapRef:
-                name: common-mysql
+                name: common
             - secretRef:
                 name: common
       restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Chart.Name }}
-spec:
-  selector:
-    app: {{ .Chart.Name }}
-  ports:
-    - protocol: TCP
-      port: {{ .Values.service.externalPort }}
-      targetPort: {{ .Values.service.internalPort }}
-  type: LoadBalancer
