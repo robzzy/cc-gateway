@@ -29,7 +29,7 @@ async function createApp() {
     app.use(namekoRpcContextMiddleware);
     app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
     app.use('/graphiql', graphqlHttp({ schema: schema, graphiql: true }));
-    server.applyMiddleware({app, path: '/graphql'});
+    server.applyMiddleware({app, path: '/playground'});
 
     return app
 }
@@ -37,6 +37,6 @@ async function createApp() {
 createApp()
     .then(app => {
         app.listen(port, () => {
-            console.log(`Server ready at http://localhost:8080/graphql`);
+            console.log(`Server ready at http://localhost:8080/graphiql ✈️`);
         });
     })

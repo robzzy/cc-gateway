@@ -1,8 +1,0 @@
-type userPayload {
-    email: String
-    phone: String
-}
-
-extend type Query {
-    getUser(email: String, phone: String): userPayload
-}

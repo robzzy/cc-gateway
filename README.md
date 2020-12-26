@@ -10,5 +10,5 @@ cd /path/to/cc-gateway
 
 make develop 
 
-http://localhost:8080/graphql
+http://localhost:8080/graphiql
 ```

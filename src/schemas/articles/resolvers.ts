@@ -3,6 +3,12 @@ export const resolvers = {
         listArticles: async (_, __, { rpc }) => {
             const articles = await rpc.articles.list_articles();
             return articles;
+        },
+        getArticle: async(_, { id }, { rpc }) => {
+            const article = await rpc.articles.get_article({
+                args: [id],
+            });
+            return article;
         }
     },
     Mutation: {
