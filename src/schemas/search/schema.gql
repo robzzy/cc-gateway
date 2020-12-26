@@ -1,0 +1,7 @@
+extend type Query{
+    getAutocomplete(term: String!): AutocompletePayload
+}
+
+type AutocompletePayload {
+    autocomplete: [String!]
+}
