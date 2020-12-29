@@ -7,33 +7,41 @@ import { getLogger } from '../logger';
 
 const logger = getLogger('rpc');
 
-export const kinopio = new Kinopio(
-    "cc-gateway",
-    {
-        hostname: process.env.RABBIT_SERVER,
-        port: parseInt(process.env.RABBIT_PORT),
-        vhost: process.env.RABBIT_VHOST,
-        username: process.env.RABBIT_USER,
-        password: process.env.RABBIT_PASS,
-        onResponse: result => {
-            Raven.captureBreadcrumb({
-                message: 'received rpc reply',
-                level: 'info',
-                category: 'rpc',
-                data: { result },
-            });
-        },
-        onRequest: (svcName, functionName, payload) => {
-            Raven.captureBreadcrumb({
-                message: `calling rpc: ${svcName}.${functionName}()`,
-                level: 'info',
-                category: 'rpc',
-                data: { functionName, payload, serviceName: svcName },
-            });
-        },
+if (!process.env.RABBIT_PORT) {
+    throw new Error('RabbitMq config error');
+}
 
-        processResponse: response => camelizeKeys(response),
-        queuePrefix: 'rpc.reply-cc-gateway',
+export const kinopio = new Kinopio("cc-gateway", {
+    hostname: process.env.RABBIT_SERVER,
+    port: parseInt(process.env.RABBIT_PORT),
+    vhost: process.env.RABBIT_VHOST,
+    username: process.env.RABBIT_USER,
+    password: process.env.RABBIT_PASS,
+    logger:
+        process.env.ENV === 'DEV'
+            ? logger.info
+            : () => {
+                return;
+            },
+    onResponse: result => {
+        Raven.captureBreadcrumb({
+            message: 'received rpc reply',
+            level: 'info',
+            category: 'rpc',
+            data: { result },
+        });
+    },
+    onRequest: (svcName, functionName, payload) => {
+        Raven.captureBreadcrumb({
+            message: `calling rpc: ${svcName}.${functionName}()`,
+            level: 'info',
+            category: 'rpc',
+            data: { functionName, payload, serviceName: svcName },
+        });
+    },
+
+    processResponse: response => camelizeKeys(response),
+    queuePrefix: 'rpc.reply-cc-gateway',
 });
 
 acceptLanguage.languages([

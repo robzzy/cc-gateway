@@ -9,7 +9,6 @@ import * as graphqlHttp from 'express-graphql';
 
 const port = process.env.PORT || 8080;
 
-
 const serverConfig: Config = {
     schema,
     context: ({ req, res }) => ({
@@ -29,7 +28,7 @@ async function createApp() {
     app.use(namekoRpcContextMiddleware);
     app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
     app.use('/graphiql', graphqlHttp({ schema: schema, graphiql: true }));
-    server.applyMiddleware({app, path: '/playground'});
+    server.applyMiddleware({ app, path: '/playground' });
 
     return app
 }
