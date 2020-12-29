@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import * as express from 'express';
 
 import { kinopio, namekoRpcContextMiddleware } from './middleware/rpc';

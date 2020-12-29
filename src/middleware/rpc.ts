@@ -17,12 +17,6 @@ export const kinopio = new Kinopio("cc-gateway", {
     vhost: process.env.RABBIT_VHOST,
     username: process.env.RABBIT_USER,
     password: process.env.RABBIT_PASS,
-    logger:
-        process.env.ENV === 'DEV'
-            ? logger.info
-            : () => {
-                return;
-            },
     onResponse: result => {
         Raven.captureBreadcrumb({
             message: 'received rpc reply',
